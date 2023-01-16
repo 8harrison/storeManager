@@ -13,7 +13,17 @@ const getProduct = async (req, res) => {
   
   res.status(200).json(message);
 };
+
+const createProduct = async (req, res) => {
+  const { name } = req.body;
+  console.log(name);
+  const newProduct = await productsService.createProduct({ name });
+  // if (!newProduct) return res.status(404).json({ message: 'não foi possivel cadastrar' });
+  res.status(201).json(newProduct);
+};
+
 module.exports = {
   getAll,
   getProduct,
+  createProduct,
 };
