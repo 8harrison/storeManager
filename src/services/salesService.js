@@ -47,6 +47,22 @@ const createSales = async (itemsSold) => {
   // return newSaleResolvePromise;
 };
 
+const getAllSales = async () => {
+  const sales = await salesModel.getAllSales();
+  // console.log(sales);
+  return sales;
+};
+
+const getSale = async (saleId) => {
+  const sale = await salesModel.getSale(saleId);
+  // console.log(sale);
+  if (sale.length === 0) return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+
+  return { type: null, message: sale };
+};
+
 module.exports = {
   createSales,
+  getAllSales,
+  getSale,
 };

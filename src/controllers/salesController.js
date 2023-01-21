@@ -12,6 +12,19 @@ const trataErro = (error, res) => {
   }
 };
 
+const getAllSales = async (req, res) => {
+  const sales = await salesService.getAllSales();
+  res.status(200).json(sales);
+};
+
+const getSale = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await salesService.getSale(id);
+  // console.log(type);
+  if (type) return res.status(404).json({ message: 'Sale not found' });
+  res.status(200).json(message);
+};
+
 const createSales = async (req, res) => {
   try {
     const sales = req.body;
@@ -26,4 +39,6 @@ const createSales = async (req, res) => {
 
 module.exports = {
   createSales,
+  getAllSales,
+  getSale,
 };

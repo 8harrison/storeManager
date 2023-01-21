@@ -12,6 +12,8 @@ app.get('/', (_request, response) => {
 
 app.get('/products', productsController.getAll);
 app.get('/products/:id', productsController.getProduct);
+app.get('/sales', salesController.getAllSales);
+app.get('/sales/:id', salesController.getSale);
 
 app.use(express.json());
 
