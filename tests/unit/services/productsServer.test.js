@@ -15,7 +15,23 @@ describe('Verificando service products', function () {
       //Assert
       expect(result).to.be.equal(allProducts)
     })
+    it('retorna um produto especifico', async function () {
+      //Arrange
+      sinon.stub(productModel, 'getProduct').resolves(allProducts[0]);
+      //Act
+      const  result  = await productService.getProduct(1);
+      //Assert
+      expect(result.message).to.be.deep.equal(allProducts[0])
+    })
   })
+  it("retorna um erro caso produto não exista", async function () {
+    //Arrange
+    sinon.stub(productModel, "getProduct").resolves(undefined);
+    //Act
+    const result = await productService.getProduct(1);
+    //Assert
+    expect(result.message).to.be.deep.equal('Product not found');
+  });
    afterEach(function () {
      sinon.restore();
    });

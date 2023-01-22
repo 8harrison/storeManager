@@ -9,6 +9,22 @@ const products = [
   },
 ];
 
+const sales = [
+  {
+    date: undefined,
+    productId: undefined,
+    quantity: undefined,
+    saleId: undefined,
+  },
+  // {
+  //   saleId: undefined,
+  //   date: undefined,
+  //   productId: undefined,
+
+  //   quantity: 1,
+  // },
+];
 module.exports = {
   products,
+  sales,
 }

@@ -30,6 +30,23 @@ describe('Teste de unidade do productsController', function () {
       expect(res.status).to.have.been.calledWith(200)
       expect(res.json).to.have.been.calledWith(productsMock)
     })
+     it("Deve retornar o status 200 e a e um produto", async function () {
+       //Arrange
+       const res = {};
+       const req = {params:{id: 1}};
+
+       res.status = sinon.stub().returns(res);
+       res.json = sinon.stub().returns();
+
+       sinon.stub(productService, "getProduct").resolves({ type: null, message: productsMock[0]});
+
+       //Act
+       await productsController.getProduct(req, res);
+
+       //Assert
+       expect(res.status).to.have.been.calledWith(200);
+       expect(res.json).to.have.been.calledWith(productsMock[0]);
+     });
   })
   afterEach(function () {
     sinon.restore();
